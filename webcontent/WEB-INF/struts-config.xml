@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+                               "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+ <data-sources/>
+ <form-beans>
+ 	<form-bean name="loginForm" type="com.madgrid.affiliation.form.LoginForm"/>
+ 	<form-bean name="passwordForm" type="com.madgrid.affiliation.form.PasswordForm"/>
+ 	<form-bean name="messageForm" type="com.madgrid.affiliation.form.MessageForm"/>
+ 	<form-bean name="profileForm" type="com.madgrid.affiliation.form.ProfileForm"/>
+ 	<form-bean name="passwordReset1Form" type="com.madgrid.affiliation.form.PasswordReset1Form"/>
+ 	<form-bean name="passwordReset2Form" type="com.madgrid.affiliation.form.PasswordReset2Form"/>
+ </form-beans>
+ <global-exceptions>
+ 
+ </global-exceptions>
+ <global-forwards>
+  <forward name="session" path="/index.jsp"/>
+ </global-forwards>
+ <action-mappings  type="org.apache.struts.config.SecureActionConfig">
+  
+<action input="/index.jsp" name="loginForm" path="/affiliationuser/login" scope="request" type="com.madgrid.affiliation.action.AffiliationLoginAction" validate="true">
+    <set-property property="secure" value="false"/> <!-- true -->
+	<forward name="ok" path="/do/dashboard"/>
+</action>  
+<action path="/affiliationuser/logoff" scope="request" type="com.madgrid.affiliation.action.AffiliationLogoffAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/index.jsp"/>
+</action>
+
+
+<action path="/password/edit" scope="request" type="com.madgrid.affiliation.action.PasswordEditAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/profile/password.jsp"/>
+</action>
+
+<action input="/WEB-INF/jsp/profile/password.jsp" name="passwordForm" path="/password/save" scope="request" type="com.madgrid.affiliation.action.PasswordSaveAction" validate="true">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/do/profile/edit"/>
+</action>
+
+
+<action path="/dashboard" scope="request" type="com.madgrid.affiliation.action.DashboardAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/dashboard/index.jsp"/>
+</action>
+
+
+
+<action path="/registeredusers/list" scope="request" type="com.madgrid.affiliation.action.RegisteredUsersListAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/registeredusers/list.jsp"/>
+</action>
+
+<action path="/creditspurchased/list" scope="request" type="com.madgrid.affiliation.action.CreditsPurchasedListAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/creditspurchased/list.jsp"/>
+</action>
+
+<action path="/payment/list" scope="request" type="com.madgrid.affiliation.action.PaymentListAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/payment/list.jsp"/>
+</action>
+
+<action path="/messagesreceived/list" scope="request" type="com.madgrid.affiliation.action.MessagesReceivedListAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/messagesreceived/list.jsp"/>
+</action>
+
+<action path="/messagesreceived/delete" scope="request" type="com.madgrid.affiliation.action.MessagesReceivedDeleteAction" validate="false">
+    <set-property property="secure" value="false"/>
+</action>
+
+<action path="/messagesreceived/view" scope="request" type="com.madgrid.affiliation.action.MessagesReceivedViewAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/messagesreceived/view.jsp"/>
+</action>
+
+<action path="/messagessent/list" scope="request" type="com.madgrid.affiliation.action.MessagesSentListAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/messagessent/list.jsp"/>
+</action>
+
+<action path="/messagessent/delete" scope="request" type="com.madgrid.affiliation.action.MessagesSentDeleteAction" validate="false">
+    <set-property property="secure" value="false"/>
+</action>
+
+<action path="/messagessent/view" scope="request" type="com.madgrid.affiliation.action.MessagesSentViewAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/messagessent/view.jsp"/>
+</action>
+
+<action path="/message/edit" scope="request" type="com.madgrid.affiliation.action.MessageEditAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/message/edit.jsp"/>
+</action>
+
+
+<action input="/WEB-INF/jsp/message/edit.jsp" name="messageForm" path="/message/send" scope="request" type="com.madgrid.affiliation.action.MessageSendAction" validate="true">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/do/messagessent/list"/>
+</action>
+
+<action path="/profile/edit" scope="request" type="com.madgrid.affiliation.action.ProfileEditAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/profile/edit.jsp"/>
+</action>
+
+
+<action input="/WEB-INF/jsp/profile/edit.jsp" name="profileForm" path="/profile/save" scope="request" type="com.madgrid.affiliation.action.ProfileSaveAction" validate="true">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/do/profile/edit"/>
+</action>
+
+<action path="/claimcredit" scope="request" type="com.madgrid.affiliation.action.ClaimCreditAction" validate="false">
+    <set-property property="secure" value="false"/>
+    <forward name="ok" path="/do/dashboard"/>
+</action>
+
+<action path="/paymentrequest" scope="request" type="com.madgrid.affiliation.action.PaymentRequestAction" validate="false">
+    <set-property property="secure" value="false"/>
+    <forward name="ok" path="/do/dashboard"/>
+</action>
+
+<action input="/password.jsp" name="passwordReset1Form" path="/passwordReset1" scope="request" type="com.madgrid.affiliation.action.PasswordReset1Action" validate="true">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/password.jsp"/>
+</action>    
+
+<action path="/passwordReset2" scope="request" type="com.madgrid.affiliation.action.PasswordReset2Action">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/passwordreset/edit.jsp" />
+	<forward name="ko" path="/passwordResetFail.jsp" />
+</action>
+
+<action  input="/WEB-INF/jsp/passwordreset/edit.jsp" name="passwordReset2Form" path="/passwordReset3" scope="request" type="com.madgrid.affiliation.action.PasswordReset3Action">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/do/dashboard"/>
+</action>
+
+<action path="/paymentRequestValidation" scope="request" type="com.madgrid.affiliation.action.PaymentRequestValidationAction" validate="false">
+    <set-property property="secure" value="false"/>
+    <forward name="okLogged" path="/do/dashboard"/>
+    <forward name="okNotLogged" path="/index.jsp"/>
+    <forward name="koLogged" path="/do/dashboard"/>
+    <forward name="koNotLogged" path="/index.jsp"/>
+</action>
+
+
+<action path="/banners" scope="request" type="com.madgrid.affiliation.action.BannersAction" validate="false">
+    <set-property property="secure" value="false"/>
+	<forward name="ok" path="/WEB-INF/jsp/banners/index.jsp"/>
+</action>
+
+
+
+ </action-mappings>
+ <controller processorClass="org.apache.struts.action.SecureRequestProcessor"/>
+  <message-resources null="false" parameter="madgridMessageResources"/>
+ <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+  <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+ </plug-in>
+  <plug-in className="org.apache.struts.action.SecurePlugIn"> 
+ 	<set-property property="httpPort" value="8080"/>  <!-- 80 -->
+ 	<set-property property="httpsPort" value="443"/> 
+ 	<set-property property="enable" value="true"/> 
+ 	<set-property property="addSession" value="true"/> 
+ </plug-in> 
+</struts-config>
